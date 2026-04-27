@@ -33,7 +33,7 @@ public final class CleanRecorder<T: CleanRecordable>: BaseRecorder,
   let videoInput: VideoInput
 
   init(_ cleanRecordable: T, timeScale: CMTimeScale = 600) {
-    let queue = DispatchQueue(label: "SCNRecorder.Processing.DispatchQueue", qos: .userInitiated)
+    let queue = DispatchQueue(label: "SCNRecorder.Processing.DispatchQueue", qos: .userInteractive)
 
     self.videoInput = VideoInput(
       cleanRecordable: cleanRecordable,

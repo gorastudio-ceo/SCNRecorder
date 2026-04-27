@@ -48,6 +48,10 @@ public struct VideoSettings {
   /// Be carefull, the value is not always obvious.
   public var transform: CGAffineTransform?
 
+    
+  /// The metadata of the video
+  public var metadata : [AVMetadataItem]?
+  
   var videoColorProperties: [String: String]?
 
   public init(
@@ -55,13 +59,15 @@ public struct VideoSettings {
     codec: Codec = .h264(),
     size: CGSize? = nil,
     scalingMode: ScalingMode = .resizeAspectFill,
-    transform: CGAffineTransform? = nil
+    transform: CGAffineTransform? = nil,
+    metadata: [AVMetadataItem]? = nil
   ) {
     self.fileType = fileType
     self.codec = codec
     self.size = size
     self.scalingMode = scalingMode
     self.transform = transform
+    self.metadata = metadata
   }
 }
 

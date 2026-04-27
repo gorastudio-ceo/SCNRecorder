@@ -10,6 +10,7 @@ Pod::Spec.new do |s|
   s.module_name           = 'SCNRecorder'
   s.swift_version         = '5.0'
   s.source_files          = 'Sources/**/*.{swift}'
+  s.exclude_files         = 'Sources/Extensions/AVCaptureSession+BaseRecorder.swift'
   s.dependency 'MTDMulticastDelegate'
 
   s.app_spec 'Example' do |app_spec|

@@ -155,8 +155,8 @@ public enum VideoOutputState: Equatable {
       handler()
       return .canceled
 
-    case .recording,
-         .paused:
+    case let .recording (currentTime, _, _), let .paused(currentTime, _):
+      videoOutput.endSession(at: currentTime)
       videoOutput.finishWriting(completionHandler: handler)
       return .finished
 

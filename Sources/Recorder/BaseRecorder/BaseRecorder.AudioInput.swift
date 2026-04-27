@@ -88,10 +88,8 @@ extension BaseRecorder.AudioInput: ARSessionObserver {
 
 @available(iOS 13.0, *)
 extension BaseRecorder.AudioInput {
-
-  func audioEngine(
-    _ audioEngine: AudioEngine,
-    didOutputAudioSampleBuffer audioSampleBuffer: CMSampleBuffer
+  
+  func audioEngine(didOutputAudioSampleBuffer audioSampleBuffer: CMSampleBuffer
   ) {
     guard started, useAudioEngine else { return }
     queue.async { [output] in output?(audioSampleBuffer) }

@@ -91,7 +91,9 @@ final class VideoOutput {
     let videoInput = AVAssetWriterInput(mediaType: .video, outputSettings: videoSettings.outputSettings)
     videoInput.expectsMediaDataInRealTime = true
     videoInput.transform = videoSettings.transform ?? .identity
-
+    if let metadata = videoSettings.metadata {
+      videoInput.metadata = metadata
+    }
     guard assetWriter.canAdd(videoInput) else { throw Error.cantAddVideoAssetWriterInput }
     assetWriter.add(videoInput)
     self.videoInput = videoInput
@@ -214,7 +216,9 @@ extension VideoOutput {
   }
 
   func finish(completionHandler handler: @escaping () -> Void) {
-    queue.async { [weak self] in self?.unsafeFinish(completionHandler: handler) }
+    queue.async { [weak self] in
+      self?.unsafeFinish(completionHandler: handler)
+    }
   }
 
   func cancel() {
